@@ -1,7 +1,5 @@
-# custom_users/models.py
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -40,7 +38,7 @@ class CustomUser(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name","phone", "image"]
+    REQUIRED_FIELDS = ["name", "phone", "image"]
 
     objects = CustomUserManager()
 
