@@ -9,3 +9,14 @@ class CharacterPasswordValidator:
     def validate(self, password, user=None):
         if password.isalpha():
             raise ValidationError("Password is entirely alphabetic.")
+
+
+def validate_file_size(value):
+    """
+    Validate that the file size is not greater than 5 MB.
+
+    """
+    max_size = 5 * 1024 * 1024
+
+    if value.size > max_size:
+        raise ValidationError(("File size exceeds the maximum allowed limit (5 MB)."))

@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "custom_user",
+    "referral",
+    "lead"
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ]
 }
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5 MB (in bytes)
+TOKEN_EXPIRATION_AFTER_SECONDS = 10

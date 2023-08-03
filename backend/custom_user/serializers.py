@@ -6,17 +6,26 @@ from .models import CustomUser
 
 class SignUPSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
+
     class Meta:
         model = CustomUser
         fields = [
-            "id",
             "name",
             "email",
             "phone",
             "birthdate",
-            # "image",
-            "password"
+            "image",
+            "password",
         ]
+
+    def validate(self, data):
+        # Check if the user is a superuser and validate the 'image' field accordingly
+        is_superuser = data.get("is_superuser", False)
+
+        if not is_superuser and not data.get("image"):
+            raise serializers.ValidationError("image is required!")
+
+        return data
 
 
 class SignInSerializer(serializers.Serializer):
@@ -56,5 +65,6 @@ class PublicUserSerializer(serializers.ModelSerializer):
             "birthdate",
             "image",
             "points",
-            "is_active"
+            "is_active",
+            "created_at",
         ]
