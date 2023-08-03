@@ -135,28 +135,28 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5 MB (in bytes)
 TOKEN_EXPIRATION_AFTER_SECONDS = 60 * 60 * 24   # 1 day
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': './logs.log',  # Specify your log file path here
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-            'propagate': True,
-        },
-        'your_app_name': {  # Replace 'your_app_name' with the name of your Django app
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',  # Set the desired log level for your app
-            'propagate': False,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#         'file': {
+#             'class': 'logging.FileHandler',
+#             'filename': './logs.log',  # Specify your log file path here
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+#             'propagate': True,
+#         },
+#         'custom_user': {  # Replace 'your_app_name' with the name of your Django app
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',  # Set the desired log level for your app
+#             'propagate': False,
+#         },
+#     },
+# }
