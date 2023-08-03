@@ -19,8 +19,9 @@ class Lead(models.Model):
 
 class LeadCategory(models.Model):
     id = models.AutoField(primary_key=True)
-    points_from = models.IntegerField(default=0)
-    points_to = models.IntegerField(default=0)
+    leads_from = models.IntegerField(default=0, unique=True)
+    leads_to = models.IntegerField(default=0, unique=True)
+    points = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
