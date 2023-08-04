@@ -13,6 +13,8 @@ import LoadingOverlay from '../LoadingOverlay/LoadingOverlay';
 import { login, signup } from '../../Service/auth.service';
 import { viewReferralLink } from '../../Service/referral.service';
 import { useHistory } from 'react-router-dom';
+import { isAuthenticated } from '../../utils/user.utils';
+
 /**
  * Authentication Form component
  * @param {object} props
@@ -20,12 +22,20 @@ import { useHistory } from 'react-router-dom';
  * @returns {JSX.Element} Authentication Form component
  */
 function AuthForm(props) {
-  //create referral link view
   const { source } = props.match.params;
+  const history = useHistory();
+  
   useEffect(() => {
+    //create referral link view
     if (source) {
       viewReferralLink(source);
     }
+    
+    //redirect to dashboard if user is already logged in
+    if (isAuthenticated()) {
+      history.push('/');
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,7 +56,6 @@ function AuthForm(props) {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
 
   const handleTabClick = (value) => {
     refreshErrors();

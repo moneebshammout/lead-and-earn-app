@@ -1,20 +1,21 @@
-import Body from '../Body/Body';
+import AdminPanel from '../AdminPanel/AdminPanel';
+import Dashboard from '../Dashboard/Dashboard';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { isAuthenticated, getUserRole } from '../../utils/user.utils';
 export default function Root() {
   const history = useHistory();
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) {
+    if (!isAuthenticated()) {
       history.push('/auth');
     }
   }, [history]);
 
   return (
-    <div>
-      <Body />
-    </div>
+    <>
+      {getUserRole() === 'admin' && <AdminPanel />}
+      {getUserRole() === 'user' && <Dashboard />}
+    </>
   );
 }
