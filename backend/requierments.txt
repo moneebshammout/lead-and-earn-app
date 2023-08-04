@@ -5,3 +5,4 @@ requests
 django-cors-headers
 python-dotenv
 Pillow
+django-filter

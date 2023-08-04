@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { isAuthenticated } from '../../utils/user.utils';
 import { useEffect } from 'react';
+import ClientTable from '../ClientTable/ClientTable';
 export default function MyClients() {
   const history = useHistory();
 
@@ -9,6 +10,6 @@ export default function MyClients() {
       history.push('/auth');
     }
   }, [history]);
-  
-  return <div>This is MyClients</div>;
+
+  return <ClientTable />;
 }

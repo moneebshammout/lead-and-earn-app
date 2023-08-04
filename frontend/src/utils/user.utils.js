@@ -14,7 +14,7 @@ const isAuthenticated = () => {
 
 /**
  * Gets user role.
- * 
+ *
  * @returns {string} user role
  */
 const getUserRole = () => {
@@ -25,5 +25,29 @@ const getUserRole = () => {
   return role;
 };
 
+/**
+ * Gets user token.
+ *
+ * @returns {string} user token
+ */
+const getUserToken = () => {
+  const userData = localStorage.getItem('user');
+  if (!userData) return null;
+  const { token } = JSON.parse(userData);
+  return token;
+};
 
-export { isAuthenticated, getUserRole };
+/**
+ * Gets user id.
+ *
+ * @returns {string} user id
+ */
+const getUserId = () => {
+  const userData = localStorage.getItem('user');
+  if (!userData) return null;
+  const { user } = JSON.parse(userData);
+  const { id } = user;
+  return id;
+};
+
+export { isAuthenticated, getUserRole, getUserToken, getUserId };

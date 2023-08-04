@@ -7,6 +7,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 import { getUserRole } from '../../utils/user.utils';
+import SearchBar from '../SearchBar/SearchBar';
 /**
  * Create NavBar component.
  *
@@ -29,15 +30,14 @@ function NavBar() {
             <>
               <MDBNavbarItem>
                 <MDBNavbarLink
-                  href="/admin-panel"
-                  active={window.location.pathname === '/admin-panel'}
+                  href="/"
+                  active={window.location.pathname === '/'}
                 >
                   Admin Panel
                 </MDBNavbarLink>
               </MDBNavbarItem>
             </>
           )}
-
           {userRole === 'user' && (
             <>
               <MDBNavbarItem>
@@ -57,6 +57,13 @@ function NavBar() {
                 </MDBNavbarLink>
               </MDBNavbarItem>
             </>
+          )}
+          {userRole === 'admin' && (
+            <MDBNavbarNav className="ml-auto">
+              <MDBNavbarItem>
+                <SearchBar />
+              </MDBNavbarItem>
+            </MDBNavbarNav>
           )}
         </MDBNavbarNav>
       </MDBContainer>

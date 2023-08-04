@@ -12,12 +12,14 @@ Table user {
   created_at timestamp
   role varchar
   level_id integer
+  total_referrals integer
 }
 
 Table lead {
   id integer [primary key]
   referral_link integer
   refered_client integer
+  points_earned integer
   // lead_owner integer
   created_at timestamp
 }
@@ -52,7 +54,6 @@ Table level {
 
 
 Ref: lead.referral_link > referral_link.id // many-to-one
-// Ref: lead.lead_owner > user.id    //many-to-one
 
 Ref: user.id - lead.refered_client  //one-to-one
 Ref: user.id - referral_link.owner //one-to-one
@@ -60,5 +61,4 @@ Ref: user.level_id - level.id //one-to-one
 
 
 Ref: referral_view.referral_link > referral_link.id  // many-to-one
-
 

@@ -58,7 +58,8 @@ class CustomUser(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     level = models.ForeignKey(Level, on_delete=models.SET_NULL, null=True, blank=True)
     role = models.CharField(max_length=50, default="user")
-    
+    total_referrals = models.IntegerField(default=0)
+
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)

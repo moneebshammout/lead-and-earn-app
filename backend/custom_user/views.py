@@ -11,9 +11,19 @@ from rest_framework import status
 
 from django.shortcuts import get_object_or_404
 
-from .serializers import SignUPSerializer, SignInSerializer, PublicUserSerializer
+from .serializers import (
+    SignUPSerializer,
+    SignInSerializer,
+    PublicUserSerializer,
+    UserDashboardSerializer,
+)
 from .models import CustomUser, ExpirationToken
-from .utils import generate_lead_on_user_creation
+from .utils import (
+    generate_lead_on_user_creation,
+    get_referral_link_and_views,
+    get_total_points_earned_in_last_days,
+    get_clients,
+)
 
 
 @api_view(["POST"])
@@ -56,5 +66,35 @@ def login(request):
 @api_view(["GET"])
 @authentication_classes([SessionAuthentication, ExpiringTokenAuthentication])
 @permission_classes([IsAuthenticated])
-def test_token(request):
-    return Response("passed!")
+def dashboard(request):
+    """
+    Returns the user's Dashboard data .
+    referral link unique and total views
+    total points earned
+    referral link
+    total points earned during the last 14 days
+    """
+    user = request.user
+
+    userData = UserDashboardSerializer(user).data
+    referral_link_views = get_referral_link_and_views(user)
+    total_points_earned_in_last_days = get_total_points_earned_in_last_days(
+        referral_link_views["referral_link"]
+    )
+    respponse_data = userData
+    respponse_data.update(referral_link_views)
+    respponse_data.update(total_points_earned_in_last_days)
+
+    return Response(respponse_data)
+
+
+@api_view(["GET"])
+@authentication_classes([SessionAuthentication, ExpiringTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def my_clients(request, pk=None):
+    """
+    return the user's clients
+    """
+    user = get_object_or_404(CustomUser, id=pk)
+    data = get_clients(user)
+    return Response(data)

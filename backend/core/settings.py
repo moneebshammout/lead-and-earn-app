@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "custom_user",
     "referral",
     "lead",
+    "administration",
+    "django_filters"
 ]
 
 MIDDLEWARE = [
@@ -140,29 +142,3 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:5173",
 ]
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#         'file': {
-#             'class': 'logging.FileHandler',
-#             'filename': './logs.log',  # Specify your log file path here
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console', 'file'],
-#             'level': 'INFO',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-#             'propagate': True,
-#         },
-#         'custom_user': {  # Replace 'your_app_name' with the name of your Django app
-#             'handlers': ['console', 'file'],
-#             'level': 'DEBUG',  # Set the desired log level for your app
-#             'propagate': False,
-#         },
-#     },
-# }

@@ -10,6 +10,8 @@ from .models import ReferralLink, ReferralView
 
 @api_view(["GET"])
 def refer_client(request, pk=None):
+    ## The ip address will always be the same in the local host
+    viewer_ip=request.META.get('REMOTE_ADDR')
     link = get_object_or_404(ReferralLink, id=pk)
-    ReferralView.objects.create(referral_link=link)
-    return Response('Referal Viewd', status=status.HTTP_201_CREATED)
+    ReferralView.objects.create(referral_link=link, ip_address=viewer_ip)
+    return Response('Referral Viewed', status=status.HTTP_201_CREATED)

@@ -7,17 +7,10 @@ from .models import CustomUser
 class SignUPSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
     role = serializers.CharField(default="user")
+
     class Meta:
         model = CustomUser
-        fields = [
-            "name",
-            "email",
-            "phone",
-            "birthdate",
-            "image",
-            "password",
-            "role"
-        ]
+        fields = ["name", "email", "phone", "birthdate", "image", "password", "role"]
 
     def validate(self, data):
         # Check if the user is a superuser and validate the 'image' field accordingly
@@ -65,8 +58,19 @@ class PublicUserSerializer(serializers.ModelSerializer):
             "phone",
             "birthdate",
             "image",
-            "points",
-            "is_active",
+            "role",
             "created_at",
-            "role"
         ]
+
+
+class UserDashboardSerializer(serializers.ModelSerializer):
+    total_points = serializers.SerializerMethodField()
+    class Meta:
+        model = CustomUser
+        fields = [
+            "total_points",
+            "level",
+        ]
+        
+    def get_total_points(self, obj):
+        return obj.points

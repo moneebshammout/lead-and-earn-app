@@ -5,6 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/auth/", include("custom_user.urls")),
+    path("api/admin/", include("administration.urls")),
+    path("api/", include("custom_user.urls")),
     path("api/referral/", include("referral.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
