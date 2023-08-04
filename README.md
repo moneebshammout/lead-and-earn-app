@@ -14,3 +14,6 @@
   <h2>server app on </2>
     
   http://127.0.0.1:8000/api/
+
+  <h2>Database schema</2>
+![db_schema](https://github.com/moneebshammout/lead-and-earn-app/assets/65316423/674e3946-a39b-4505-88ed-d741642fa114)
