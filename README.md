@@ -8,9 +8,9 @@
 <h3>2- docker compose up: 
 
 <h2>Client app on </2>
-```bash
+
   http://localhost:3000/
 
   <h2>server app on </2>
-```bash
+    
   http://127.0.0.1:8000/api/
