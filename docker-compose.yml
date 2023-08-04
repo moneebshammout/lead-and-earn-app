@@ -1,0 +1,13 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend # Replace with the path to your React app's directory
+    ports:
+      - "3000:3000" # Map the container port to host port
