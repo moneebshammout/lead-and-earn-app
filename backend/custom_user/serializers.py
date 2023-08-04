@@ -6,7 +6,7 @@ from .models import CustomUser
 
 class SignUPSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
-
+    role = serializers.CharField(default="user")
     class Meta:
         model = CustomUser
         fields = [
@@ -16,6 +16,7 @@ class SignUPSerializer(serializers.ModelSerializer):
             "birthdate",
             "image",
             "password",
+            "role"
         ]
 
     def validate(self, data):
@@ -67,4 +68,5 @@ class PublicUserSerializer(serializers.ModelSerializer):
             "points",
             "is_active",
             "created_at",
+            "role"
         ]
