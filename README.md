@@ -5,7 +5,7 @@
 
 <h2>How to run app</2>
 <h3>1- docker compose build </3>
-<h3>2- docker compose up: 
+<h3>2- docker compose up 
 
 <h2>Client app on </2>
 
