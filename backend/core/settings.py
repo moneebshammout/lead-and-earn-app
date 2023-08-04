@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework.authtoken",
+    "corsheaders",
     "custom_user",
     "referral",
     "lead",
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -132,8 +134,12 @@ REST_FRAMEWORK = {
 }
 
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5 MB (in bytes)
-TOKEN_EXPIRATION_AFTER_SECONDS = 60 * 60 * 24   # 1 day
+TOKEN_EXPIRATION_AFTER_SECONDS = 60 * 60 * 24  # 1 day
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
 
 # LOGGING = {
 #     'version': 1,

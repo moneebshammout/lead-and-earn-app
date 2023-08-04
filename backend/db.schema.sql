@@ -30,7 +30,6 @@ Table referral_link {
 
 Table referral_view {
   id integer [primary key]
-  viewer integer
   referral_link varchar
   created_at timestamp
 }
@@ -60,7 +59,6 @@ Ref: user.id - referral_link.owner //one-to-one
 Ref: user.level_id - level.id //one-to-one
 
 
-Ref: referral_view.viewer > user.id    // many-to-one
 Ref: referral_view.referral_link > referral_link.id  // many-to-one
 
 

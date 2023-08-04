@@ -16,7 +16,6 @@ class ReferralLink(models.Model):
 class ReferralView(models.Model):
 	id = models.AutoField(primary_key=True)
 	referral_link = models.ForeignKey(ReferralLink, null=True, on_delete=models.SET_NULL)
-	viewer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 	created_at = models.DateTimeField(auto_now_add=True)
  
 	def __str__(self):

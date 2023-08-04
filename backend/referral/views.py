@@ -11,6 +11,5 @@ from .models import ReferralLink, ReferralView
 @api_view(["GET"])
 def refer_client(request, pk=None):
     link = get_object_or_404(ReferralLink, id=pk)
-    ReferralView.objects.create(referral_link=link, viewer=link.owner)
-    #redirect to signup page with source=link.id
-    return Response(link.owner.email, status=status.HTTP_200_OK)
+    ReferralView.objects.create(referral_link=link)
+    return Response('Referal Viewd', status=status.HTTP_201_CREATED)
